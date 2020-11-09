@@ -1,6 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Windows激活辅助</title>
+    <url>/2020/11/09/Test/</url>
+    <content><![CDATA[<ul>
+<li>XP密钥：MRX3F-47B9T-2487J-KWKMF-RPWBY</li>
+</ul>
+<ul>
+<li>GodMode.{ED7BA470-8E54-465E-825C-99712043E01C}</li>
+</ul>
+<ul>
+<li>office2016专业版密钥: NKGG6-WBPCC-HXWMY-6DQGJ-CPQVG</li>
+</ul>
+<ul>
+<li><a href="https://files.fm/u/nshumc4m">Windows激活软件KMSpico</a><br>解压密码：2016</li>
+</ul>
+]]></content>
+      <categories>
+        <category>工具和资源</category>
+      </categories>
+      <tags>
+        <tag>工具和资源</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Hello World</title>
     <url>/2020/11/08/hello-world/</url>
     <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
@@ -23,6 +46,9 @@
     <url>/2020/11/09/%E5%87%BA%E5%8F%91/</url>
     <content><![CDATA[<p>半夜才把博客勉强搭建好，希望自己以后能经常更新博客，写一些日记啊，文章啊等等。</p>
 ]]></content>
+      <categories>
+        <category>日常</category>
+      </categories>
       <tags>
         <tag>日常</tag>
       </tags>
@@ -755,6 +781,9 @@ www.baidu.com;$s/bin$s/which$s nc$s
 4. **在进入执行命令的函数/方法之前，对参数进行过滤，对敏感字符进行转义**
 5. **对PHP语言来说，不能完全控制的危险函数最好不要使用**</code></pre>
 ]]></content>
+      <categories>
+        <category>网络安全</category>
+      </categories>
       <tags>
         <tag>WEB安全</tag>
       </tags>
